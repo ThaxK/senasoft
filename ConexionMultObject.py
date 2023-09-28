@@ -1,18 +1,16 @@
-#importacion de liberias custom vision
 from azure.cognitiveservices.vision.customvision.training import CustomVisionTrainingClient
 from azure.cognitiveservices.vision.customvision.prediction import CustomVisionPredictionClient
 from azure.cognitiveservices.vision.customvision.training.models import ImageFileCreateBatch, ImageFileCreateEntry, Region
 from msrest.authentication import ApiKeyCredentials
 
-class ConexionCustomVision:
-    # variables para la conexion
-    ENDPOINT = "https://senacalidavidsebastian-prediction.cognitiveservices.azure.com/"
-    prediction_key = "b1e81542f271448db4f31264b66a46d4"        
-    project_id = "45ab08a3-bc97-4680-8496-48e561d2be37"
-    model = "classifyModel"
-    
-    #creación del método de conexión        
-    def conn(self):        
+class ConexionObject:
+    # retrieve environment variables
+    ENDPOINT = "https://pruebadeteccionobjetos-prediction.cognitiveservices.azure.com/"
+    prediction_key = "26a4605ec33349cb99d77da1a0dfb3c6"        
+    project_id = "909af45c-b3a1-46bf-9c8e-d1be96adcf3c"
+    model = "Iteration3"    
+            
+    def connObject(self):        
         prediction_credentials = ApiKeyCredentials(in_headers={"Prediction-key": self.prediction_key})
         predictorConn = CustomVisionPredictionClient(self.ENDPOINT, prediction_credentials)
         return predictorConn

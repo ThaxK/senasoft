@@ -27,9 +27,9 @@ woman = face_client.person_group_person.create(PERSON_GROUP_ID, name="Woman")
 man = face_client.person_group_person.create(PERSON_GROUP_ID, name="Man")
 child = face_client.person_group_person.create(PERSON_GROUP_ID, name="Child")
 
-woman_images = ["https://raw.githubusercontent.com/Azure-Samples/cognitive-services-sample-data-files/master/Face/images/Family1-Mom1.jpg", "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-sample-data-files/master/Face/images/Family1-Mom2.jpg"]
-man_images = ["https://raw.githubusercontent.com/Azure-Samples/cognitive-services-sample-data-files/master/Face/images/Family1-Dad1.jpg", "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-sample-data-files/master/Face/images/Family1-Dad2.jpg"]
-child_images = ["https://raw.githubusercontent.com/Azure-Samples/cognitive-services-sample-data-files/master/Face/images/Family1-Son1.jpg", "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-sample-data-files/master/Face/images/Family1-Son2.jpg"]
+woman_images = ["https://img.freepik.com/foto-gratis/mujer-joven-hermosa-sueter-rosa-calido-aspecto-natural-sonriente-retrato-aislado-cabello-largo_285396-896.jpg?w=2000"]
+man_images = ["https://img.freepik.com/foto-gratis/retrato-hombre-blanco-aislado_53876-40306.jpg?w=2000"]
+child_images = ["https://static.guiainfantil.com/media/31278/c/cuando-el-nino-de-3-anos-no-habla-lg.jpg"]
 
 for image in woman_images:
     # Check if the image is of sufficent quality for recognition.
