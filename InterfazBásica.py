@@ -1,4 +1,4 @@
-
+#importacion de clases
 from azure.cognitiveservices.vision.customvision.training import CustomVisionTrainingClient
 from azure.cognitiveservices.vision.customvision.prediction import CustomVisionPredictionClient
 from azure.cognitiveservices.vision.customvision.training.models import ImageFileCreateBatch, ImageFileCreateEntry, Region
@@ -13,6 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_MainWindow(object):
+    #creacion de la interfaz grafica
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(763, 800)
@@ -145,46 +146,55 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
+    #Creacion del metodo limpiar
     def clear_INPUT(self):
         self.lineEditFILE.setText("")
         self.lineEditResult .setText("")
         self.lineEditURL.setText("")             
         self.lineEditResultTRANSLATOR.setText("")        
         self.comboBoxTRANSLATOR.itemText(0)        
-
+    #Creacion del metodo de clasificacion por URL
     def input_URL(self, predit):
+        #Creacion del objeto custom vision
         prediccion = ConexionCustomVision()
         predit = prediccion.conn()  
         img = self.lineEditURL.text()
+        #envio de solicitud y recibimiento de los datos
         results = predit.classify_image_url(prediccion.project_id, prediccion.model, img)
         
         y = 0
-        name = ""                
+        name = ""  
+        #iteracion sobre los resultados para encontrar el numero mayor y mostrarlo
         for prediction in results.predictions:            
             if prediction.probability > y :
                 name = prediction.tag_name 
                 y = prediction.probability 
         #name = "Objeto: " + name + ", Probability: " + str(y)        
         self.lineEditResult.setText(name)             
-        
+
+    #Creacion del metodo de clasificacion por imagen local
     def input_FILE(self, predit):
+        #Creacion del objeto custom vision
         prediccion = ConexionCustomVision()
         predit = prediccion.conn()  
         img = self.lineEditFILE.text()
         
+        #envio de solicitud y recibimiento de los datos
         with open(img, "rb") as image_contents:
             results = predit.classify_image(prediccion.project_id, prediccion.model, image_contents.read())
         y = 0
-        name = ""                
+        name = ""   
+        #iteracion sobre los resultados para encontrar el numero mayor y mostrarlo
         for prediction in results.predictions:            
             if prediction.probability > y :
                 name = prediction.tag_name 
                 y = prediction.probability 
         #name = "Objeto: " + name + ", Probability: " + str(y)        
         self.lineEditResult.setText(name)    
-                
+
+    #Creacion del metodo traducir
     def trasnlator_INPUT(self):
+        #toma el texto de el (lineEditResult) que fue el texto generado por el metodo clasificacion
         result = self.lineEditResult.text()
         idioma = self.comboBoxTRANSLATOR.currentText()                                
         body = [{
@@ -194,18 +204,22 @@ class Ui_MainWindow(object):
         idiomas = {"FRANCES" : "fr",
                    "INGLES": "en",
                    "PORTUGUES": "pt",}                                    
-        conn = ConexionTranlator()                
+        conn = ConexionTranlator()      
+        #se envia la consulta y se recibe la respuesta en (response)
         request = requests.post(conn.constructed_url, params=conn.params, headers=conn.headers, json=body)    
         response = request.json()
         x = response[0]        
         y = []
+        #se itera sobre las traduciones y se agrega todo a la variable (y)
         for i in x["translations"]:    
             y.append(i)
-            
+
+        #se itera sobre la variable (y) buscando la traduccion que sea del idioma solicitado en la variable (idioma)
         for j in y:
             if idiomas[idioma] == j['to']:
-                self.lineEditResultTRANSLATOR.setText(j["text"])                
-        
+                self.lineEditResultTRANSLATOR.setText(j["text"])         
+                
+    #creacion de nombres y funciones de la interfaz grafica
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
