@@ -3,7 +3,6 @@ from azure.cognitiveservices.vision.customvision.prediction import CustomVisionP
 from azure.cognitiveservices.vision.customvision.training.models import ImageFileCreateBatch, ImageFileCreateEntry, Region
 from msrest.authentication import ApiKeyCredentials
 from PyQt5 import QtCore, QtGui, QtWidgets
-from conexion import ConexionCustomVinsion
 from InterfazBásica import Ui_MainWindow 
 import sys
 

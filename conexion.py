@@ -3,7 +3,7 @@ from azure.cognitiveservices.vision.customvision.prediction import CustomVisionP
 from azure.cognitiveservices.vision.customvision.training.models import ImageFileCreateBatch, ImageFileCreateEntry, Region
 from msrest.authentication import ApiKeyCredentials
 
-class ConexionCustomVinsion:
+class ConexionCustomVision:
     # retrieve environment variables
     ENDPOINT = "https://senacalidavidsebastian-prediction.cognitiveservices.azure.com/"
     prediction_key = "b1e81542f271448db4f31264b66a46d4"        
