@@ -1,4 +1,4 @@
-#importacion de clases
+#importacion de librerias azure y de interfaz
 from azure.cognitiveservices.vision.customvision.training import CustomVisionTrainingClient
 from azure.cognitiveservices.vision.customvision.prediction import CustomVisionPredictionClient
 from azure.cognitiveservices.vision.customvision.training.models import ImageFileCreateBatch, ImageFileCreateEntry, Region
@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_MainWindow(object):
-    #creacion de la interfaz grafica
+    #creacion de la interfaz grafica, código autogenerado desde pyqt5
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(763, 800)
@@ -139,6 +139,7 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
+        #Configuración de Botones
         self.btnCustomVisionCLEAR.clicked.connect(self.clear_INPUT)                        
         self.btnCustomVisionURL.clicked.connect(self.input_URL)  
         self.btnCustomVisionFILE.clicked.connect(self.input_FILE)  
@@ -200,7 +201,7 @@ class Ui_MainWindow(object):
         body = [{
             'text': result
         }]
-        
+        #idiomas que ofrece la app
         idiomas = {"FRANCES" : "fr",
                    "INGLES": "en",
                    "PORTUGUES": "pt",}                                    
